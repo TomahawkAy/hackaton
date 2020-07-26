@@ -1,0 +1,90 @@
+<nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
+    <div class="container">
+        <a class="navbar-brand mr-lg-5" href="{{ path('home') }}">
+            <img src="{{ asset('assets/img/mawalni-white.png') }}" style="min-width: 50px;min-height: 70px">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global"
+                aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbar_global">
+            <div class="navbar-collapse-header">
+                <div class="row">
+                    <div class="col-6 collapse-brand">
+                        <a href="./index.html">
+                            <img src="./assets/img/brand/blue.png">
+                        </a>
+                    </div>
+                    <div class="col-6 collapse-close">
+                        <button type="button" class="navbar-toggler" data-toggle="collapse"
+                                data-target="#navbar_global"
+                                aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <ul class="navbar-nav navbar-nav-hover align-items-lg-center ml-lg-auto">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
+                        <i class="ni ni-ui-04 d-lg-none"></i>
+                        <span class="nav-link-inner--text">Projets</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-xl">
+                        <div class="dropdown-menu-inner">
+                            <a href="{{ path('projectRender') }}"
+                               class="media d-flex align-items-center">
+                                <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
+                                    <i class="ni ni-spaceship"></i>
+                                </div>
+                                <div class="media-body ml-3">
+                                    <h6 class="heading text-primary mb-md-1">Projets</h6>
+                                    <p class="description d-none d-md-inline-block mb-0">donner vie à un projet</p>
+                                </div>
+                            </a>
+                            <a href="{{ path('projects_home') }}"
+                               class="media d-flex align-items-center">
+                                <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
+                                    <i class="ni ni-palette"></i>
+                                </div>
+                                <div class="media-body ml-3">
+                                    <h6 class="heading text-primary mb-md-1"></h6>
+                                    <p class="description d-none d-md-inline-block mb-0">Contribuer à un projet</p>
+                                </div>
+                            </a>
+                            <a href="{{ path('client-projects') }}" class="media d-flex align-items-center">
+                                <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
+                                    <i class="ni ni-palette"></i>
+                                </div>
+                                <div class="media-body ml-3">
+                                    <h6 class="heading text-primary mb-md-1"></h6>
+                                    <p class="description d-none d-md-inline-block mb-0">Liste de mes projets</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
+                        <i class="ni ni-collection d-lg-none"></i>
+                        <span class="nav-link-inner--text"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="./examples/landing.html" class="dropdown-item">Landing</a>
+                        <a href="./examples/profile.html" class="dropdown-item">Profile</a>
+                        <a href="./examples/login.html" class="dropdown-item">Login</a>
+                        <a href="./examples/register.html" class="dropdown-item">Register</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="{{ path('logout') }}" class="nav-link" style="color: white;">
+                <span>
+                    <i class="fa fa-sign-in"></i>
+                    Logout
+                </span>
+            </a>
+
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,237 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+<div class="section section-hero section-shaped">
+    <div class="shape shape-style-3 shape-default">
+        <span class="span-150"></span>
+        <span class="span-50"></span>
+        <span class="span-50"></span>
+        <span class="span-75"></span>
+        <span class="span-100"></span>
+        <span class="span-75"></span>
+        <span class="span-50"></span>
+        <span class="span-100"></span>
+        <span class="span-50"></span>
+        <span class="span-100"></span>
+    </div>
+    <div class="page-header">
+        <div class="container shape-container d-flex align-items-center py-lg">
+            <div class="col px-0">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <h1 class="text-white display-1">Mawalni</h1>
+                        <h2 class="display-4 font-weight-normal text-white">Parceque tous le monde mérite une chance
+                            !</h2>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+             xmlns="http://www.w3.org/2000/svg">
+            <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+    </div>
+</div>
+<div class="section features-6">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="info info-horizontal info-hover-primary">
+                    <div class="description pl-4">
+                        <h5 class="title">For Developers</h5>
+                        <p>The time is now for it to be okay to be great. People in this world shun people for being
+                            great. For being a bright color. For standing out. But the time is now.</p>
+                        <a href="#" class="text-info">Learn more</a>
+                    </div>
+                </div>
+                <div class="info info-horizontal info-hover-primary mt-5">
+                    <div class="description pl-4">
+                        <h5 class="title">For Designers</h5>
+                        <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at. That’s
+                            my skill. I’m not really specifically talented at anything except for the ability to
+                            learn.</p>
+                        <a href="#" class="text-info">Learn more</a>
+                    </div>
+                </div>
+                <div class="info info-horizontal info-hover-primary mt-5">
+                    <div class="description pl-4">
+                        <h5 class="title">For Beginners</h5>
+                        <p>That’s what I do. That’s what I’m here for. Don’t be afraid to be wrong because you can’t
+                            learn anything from a compliment. If everything I did failed - which it doesn't.</p>
+                        <a href="#" class="text-info">Learn more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-10 mx-md-auto">
+                <img class="ml-lg-5" src="../assets/img/ill/ill.png" width="100%">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section features-1">
+    <div class="container">
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-4">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="{{ asset('uploads/images/patentes/' ~ project.projectProfile.image) }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.name }}</h5>
+                            <p class="card-text">{{ project.description }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item nav-item"><a href="#" data-toggle="modal"
+                                                                    onclick="setNewId({{ project.id }})"
+                                                                    data-target="#exampleModal">Faire un don</a>
+                            </li>
+                            <li class="list-group-item nav-item"><a href="#" data-toggle="modal"
+                                                                    data-target="#exampleModal">Investire dans ce
+                                    projet</a></li>
+                        </ul>
+                        <div class="card-body text-center">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                     role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                     style="width: {{ (project.currentFundings*100) / (project.initialFundings+1)  }}%"></div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-6"><span
+                                            class="badge badge-default">{{ project.currentFundings }} Dt</span>
+                                </div>
+                                <div class="col-6"><span
+                                            class="badge badge-success">{{ project.initialFundings }} Dt</span>
+                                </div>
+                                <div class="col-7 " style="margin-top: 3rem">
+                                    {% if project.deadline|date()  < 'now'|date() %}
+                                        <h5 class="text-success">Offre valable</h5>
+                                    {% else %}
+                                        <h5 class="text-danger">Offre n'est plus valable</h5>
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Financer un projet</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post">
+                                <div class="col-12">
+                                    <label>Saisire le montant souhaité pour l'investissement :</label>
+                                    <input class="form-control" placeholder="Montant demandé " id="sum" type="number"/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" onclick="createNewInv()" class="btn btn-primary">Save
+                                        changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row row-grid align-items-center mb-5">
+                <div class="col-lg-6">
+                    <h3 class="text-primary font-weight-light mb-2">Thank you for supporting us!</h3>
+                    <h4 class="mb-0 font-weight-light">Let's get in touch on any of these platforms.</h4>
+                </div>
+                <div class="col-lg-6 text-lg-center btn-wrapper">
+                    <button target="_blank" href="https://twitter.com/creativetim" rel="nofollow"
+                            class="btn btn-icon-only btn-twitter rounded-circle" data-toggle="tooltip"
+                            data-original-title="Follow us">
+                        <span class="btn-inner--icon"><i class="fa fa-twitter"></i></span>
+                    </button>
+                    <button target="_blank" href="https://www.facebook.com/CreativeTim/" rel="nofollow"
+                            class="btn-icon-only rounded-circle btn btn-facebook" data-toggle="tooltip"
+                            data-original-title="Like us">
+                        <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
+                    </button>
+                    <button target="_blank" href="https://dribbble.com/creativetim" rel="nofollow"
+                            class="btn btn-icon-only btn-dribbble rounded-circle" data-toggle="tooltip"
+                            data-original-title="Follow us">
+                        <span class="btn-inner--icon"><i class="fa fa-dribbble"></i></span>
+                    </button>
+                    <button target="_blank" href="https://github.com/creativetimofficial" rel="nofollow"
+                            class="btn btn-icon-only btn-github rounded-circle" data-toggle="tooltip"
+                            data-original-title="Star on Github">
+                        <span class="btn-inner--icon"><i class="fa fa-github"></i></span>
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <div class="row align-items-center justify-content-md-between">
+                <div class="col-md-6">
+                    <div class="copyright">
+                        &copy; 2020 <a href="" target="_blank">Creative Tim</a>.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <ul class="nav nav-footer justify-content-end">
+                        <li class="nav-item">
+                            <a href="" class="nav-link" target="_blank">Creative Tim</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link" target="_blank">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link" target="_blank">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link" target="_blank">License</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+    {% block internalJs %}
+        <script>
+            var currentId = 0;
+
+            function setNewId(id) {
+                currentId = id;
+            }
+
+            function makeAjaxCall(type, dataType, data, url, successCallback) {
+                $.ajax({
+                    type: type,
+                    url: url,
+                    dataType: dataType,
+                    data: data,
+                    success: successCallback
+                });
+            }
+
+            function createNewInv() {
+                let payload = {sum: $('#sum').val(), id: currentId}
+                let callback = (result => {
+                    console.log('im done...')
+                    window.location.href = "{{ path('projects_home') }}";
+                });
+                makeAjaxCall('POST', 'json', payload, "{{ path('investissement-creation') }}", callback);
+
+            }
+        </script>
+    {% endblock %}
